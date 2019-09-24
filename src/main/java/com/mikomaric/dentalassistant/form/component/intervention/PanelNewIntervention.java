@@ -20,6 +20,8 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import com.mikomaric.dentalassistant.session.Session;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class PanelNewIntervention extends javax.swing.JPanel {
 
@@ -325,6 +327,7 @@ public class PanelNewIntervention extends javax.swing.JPanel {
             setStartView();
             prepareTempFields();
         } catch (Exception ex) {
+            Logger.getLogger(PanelNewIntervention.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, ex.getMessage(), "Greška", JOptionPane.OK_OPTION, new ErrorIcon());
         }
     }//GEN-LAST:event_pnlSaveInterventionMouseClicked

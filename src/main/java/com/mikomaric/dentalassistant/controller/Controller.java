@@ -18,7 +18,9 @@ import com.mikomaric.dentalassistant.domain.dto.ToothRootStateDto;
 import com.mikomaric.dentalassistant.domain.dto.ToothSideLabelDto;
 import com.mikomaric.dentalassistant.domain.dto.ToothSideStateDto;
 import com.mikomaric.dentalassistant.domain.dto.ToothStateDto;
+import com.mikomaric.dentalassistant.domain.dto.mapper.PatientMapper;
 import com.mikomaric.dentalassistant.domain.dto.mapper.impl.AppointmentMapperImpl;
+import com.mikomaric.dentalassistant.domain.dto.mapper.impl.InterventionMapperImpl;
 import com.mikomaric.dentalassistant.domain.dto.mapper.impl.PatientMapperImpl;
 import com.mikomaric.dentalassistant.domain.dto.mapper.impl.ToothRootStateMapperImpl;
 import com.mikomaric.dentalassistant.domain.dto.mapper.impl.ToothSideLabelMapperImpl;
@@ -106,13 +108,8 @@ public class Controller {
     }
 
     public void updatePatient(Patient patient) throws Exception {
-//        Request request = new Request(Operation.OPERATION_UPDATE_PATIENT, patient);
-//        Communication.getInstance().sendRequest(request);
-//        Response response = Communication.getInstance().readResponse();
-//        if (response.getStatus() == ResponseStatus.ERROR) {
-//            Exception ex = (Exception) response.getError();
-//            throw ex;
-//        }
+        Communication.getInstance().put("patients/" + patient.getPatientID(),
+                new PatientMapperImpl().patientToPatientDto(patient));
     }
 
     public List<ToothSideState> getAllToothSideStates() throws Exception {
@@ -190,13 +187,8 @@ public class Controller {
     }
 
     public void saveIntervention(Intervention intervention) throws Exception {
-//        Request request = new Request(Operation.OPERATION_SAVE_INTERVENTION, intervention);
-//        Communication.getInstance().sendRequest(request);
-//        Response response = Communication.getInstance().readResponse();
-//        if (response.getStatus() == ResponseStatus.ERROR) {
-//            Exception ex = (Exception) response.getError();
-//            throw ex;
-//        }
+        System.out.println(intervention.getUser().getUsername());
+        Communication.getInstance().post("interventions", new InterventionMapperImpl().interventionToInterventionDto(intervention));
     }
 
     public static void main(String[] args) {

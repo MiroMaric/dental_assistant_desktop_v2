@@ -72,7 +72,7 @@ public class FormMain extends javax.swing.JFrame {
 
         lblSearchCardboard.setBackground(new java.awt.Color(102, 153, 255));
         lblSearchCardboard.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblSearchCardboard.setToolTipText("Novi karton");
+        lblSearchCardboard.setToolTipText("Pretraživanje kartona");
         lblSearchCardboard.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lblSearchCardboardMousePressed(evt);

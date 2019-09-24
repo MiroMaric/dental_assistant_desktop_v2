@@ -51,7 +51,6 @@ public class FormCardboard extends javax.swing.JFrame {
 //        } catch (Exception ex) {
 //            System.out.println(ex.getMessage());
 //        }
-        Session.getInstance().setUser(new User("miko"));
         pnlJaw = new PanelJaw();
         initComponents();
         adjustForm();

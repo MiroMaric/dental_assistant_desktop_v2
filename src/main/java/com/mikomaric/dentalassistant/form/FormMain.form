@@ -83,7 +83,7 @@
               <Color blue="ff" green="99" red="66" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="toolTipText" type="java.lang.String" value="Novi karton"/>
+            <Property name="toolTipText" type="java.lang.String" value="Pretra&#x17e;ivanje kartona"/>
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblSearchCardboardMousePressed"/>

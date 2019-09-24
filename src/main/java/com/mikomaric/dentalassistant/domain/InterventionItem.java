@@ -1,7 +1,5 @@
 package com.mikomaric.dentalassistant.domain;
 
-import java.util.UUID;
-
 public abstract class InterventionItem{
 
     protected String itemID;
@@ -9,7 +7,6 @@ public abstract class InterventionItem{
     protected String note;
 
     public InterventionItem() {
-        this.itemID = UUID.randomUUID().toString();
     }
 
     public InterventionItem(String itemID) {

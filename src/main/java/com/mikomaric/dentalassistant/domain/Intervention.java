@@ -2,7 +2,6 @@ package com.mikomaric.dentalassistant.domain;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 public class Intervention{
 
@@ -13,14 +12,11 @@ public class Intervention{
     private User user;
 
     public Intervention() {
-        interventionID = UUID.randomUUID().toString();
     }
     
     public Intervention(String interventionID) {
-        this.interventionID = interventionID;
     }
     public Intervention(String interventionID, Date date, String note, List<InterventionItem> items, User user) {
-        this.interventionID = interventionID;
         this.date = date;
         this.note = note;
         this.items = items;
