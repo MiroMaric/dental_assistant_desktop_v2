@@ -1,5 +1,7 @@
 package com.mikomaric.dentalassistant.form.component.myfield;
 
+import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -23,7 +25,7 @@ public class MyInputDateField extends MyInputTextField{
         try{
             dateFormat.parse(txtField.getText().trim());
             return true;
-        }catch(Exception e){
+        }catch(ParseException e){
             return false;
         }
     }

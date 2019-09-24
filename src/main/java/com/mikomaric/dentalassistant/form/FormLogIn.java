@@ -1,5 +1,6 @@
 package com.mikomaric.dentalassistant.form;
 
+import com.mikomaric.dentalassistant.communication.exception.MyNotAuthorizedException;
 import com.mikomaric.dentalassistant.controller.Controller;
 import com.mikomaric.dentalassistant.domain.User;
 import com.mikomaric.dentalassistant.form.component.TitleBar;
@@ -30,6 +31,7 @@ public class FormLogIn extends javax.swing.JFrame {
         lblError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         btnLogIn.setText("Prijavi me");
         btnLogIn.addActionListener(new java.awt.event.ActionListener() {
@@ -128,9 +130,9 @@ public class FormLogIn extends javax.swing.JFrame {
     //Dodeljivanje vrednosti mojim poljima
     private void initFields() {
         pnlUsername = new MyInputTextField("Korisničko ime:", "", null, true);
-        pnlUsername.setValue("miko");
+//        pnlUsername.setValue("miko");
         pnlPassword = new MyInputPasswordField("Šifra:", "", null, true);
-        pnlPassword.setValue("mikomaric");
+//        pnlPassword.setValue("mikomaric");
         pnlLogIn.add(pnlUsername);
         pnlLogIn.add(pnlPassword);
     }
@@ -145,9 +147,11 @@ public class FormLogIn extends javax.swing.JFrame {
                 Session.getInstance().setUser(user);
                 new FormMain().setVisible(true);
                 this.dispose();
-            } catch (Exception e) {
-                //lblError.setText("Pogrešno korisničko ime ili šifra");
-                lblError.setText(e.getMessage());
+            } catch (MyNotAuthorizedException e) {
+                lblError.setText("Pogrešno korisničko ime i/ili šifra");
+            }catch(Exception e){
+                lblError.setText("Sistem ne može da autentifikuje korisnika, pokušajte ponovo");
+                System.out.println(e.getMessage());
             }
         } else {
             lblError.setText("Podaci nisu uneti");

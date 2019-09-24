@@ -3,6 +3,7 @@ package com.mikomaric.dentalassistant.controller;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mikomaric.dentalassistant.communication.Communication;
+import com.mikomaric.dentalassistant.communication.exception.MyNotAuthorizedException;
 import com.mikomaric.dentalassistant.domain.Appointment;
 import com.mikomaric.dentalassistant.domain.Patient;
 import com.mikomaric.dentalassistant.domain.User;
@@ -24,12 +25,10 @@ import com.mikomaric.dentalassistant.domain.dto.mapper.impl.ToothSideLabelMapper
 import com.mikomaric.dentalassistant.domain.dto.mapper.impl.ToothSideStateMapperImpl;
 import com.mikomaric.dentalassistant.domain.dto.mapper.impl.ToothStateMapperImpl;
 import com.mikomaric.dentalassistant.domain.dto.mapper.impl.UserMapperImpl;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.ws.rs.NotFoundException;
 
 public class Controller {
 
@@ -45,23 +44,19 @@ public class Controller {
         return instance;
     }
 
-    public User logIn(String username, String password) throws Exception {
+    public User logIn(String username, String password) throws MyNotAuthorizedException,Exception {
         System.out.println("Login!");
-        try {
-            JsonNode data = Communication.getInstance().get("users/" + username);
-            if (data.isObject()) {
-                ObjectMapper mapper = new ObjectMapper();
-                User user = mapper.treeToValue(data, User.class);
-                if (user.getPassword().equals(password)) {
-                    return user;
-                }
+        Communication.getInstance().setPassword(password);
+        Communication.getInstance().setUsername(username);
+        JsonNode data = Communication.getInstance().get("users/" + username);
+        if (data.isObject()) {
+            ObjectMapper mapper = new ObjectMapper();
+            User user = mapper.treeToValue(data, User.class);
+            if (user.getPassword().equals(password)) {
+                return user;
             }
-        } catch (IOException ex) {
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NotFoundException ex) {
-            throw new Exception("Username and/or password is incorrect");
         }
-        throw new Exception("Username and/or password is incorrect");
+        throw new Exception("Greška");
     }
 
     public List<Appointment> getAllAppointments() throws Exception {

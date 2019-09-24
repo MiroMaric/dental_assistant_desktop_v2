@@ -99,7 +99,7 @@ public class FormCardboardInfo extends javax.swing.JDialog {
         pnlEmail = new MyInputTextField("E-pošta:", "E-pošta mora biti valida, e.g. me@mydomain.com", "^(([a-zA-Z\\d_\\.-]+)@([a-z\\d-]+)\\.([a-z]{2,8})(\\.[a-z]{2,8})?)$", false);
         pnlFirstname = new MyInputTextField("Ime:", "Ime mora imati 2 - 15 karaktera", "^(([A-Za-z]){2,15})$", true);
         pnlLastname = new MyInputTextField("Prezime:", "Prezime mora imati 2 - 15 karaktera", "^(([A-Za-z]){2,15})$", true);
-        pnlAdress = new MyInputTextField("Adresa:", "Adresa mora imati 4 - 20 karaktera", "^(([\\w, ]){4,20})$", false);
+        pnlAdress = new MyInputTextField("Adresa:", "Adresa mora imati 4 - 40 karaktera", "^(([\\w, ]){4,40})$", false);
         pnlPhone = new MyInputTextField("Telefon:", "Telefon mora biti unet u ispravnom formatu", "^((\\d){7,10})$", false);
         pnlBirthDate = new MyInputDateField("Datum rodjenja:", "Datum mora biti unetu u formatu dd.MM.yyyy", "dd.MM.yyyy", false);
 

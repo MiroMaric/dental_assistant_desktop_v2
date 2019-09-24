@@ -27,6 +27,7 @@ public class FormSignUp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registracija");
+        setResizable(false);
 
         pnlSignUp.setPreferredSize(new java.awt.Dimension(0, 542));
         pnlSignUp.setLayout(new java.awt.GridLayout(7, 1));
@@ -78,8 +79,9 @@ public class FormSignUp extends javax.swing.JFrame {
         try {
             Controller.getInstance().registerNewUser(user);
         } catch (Exception ex) {
+            ex.printStackTrace();
             //JOptionPane.showMessageDialog(this, ex.getMessage(), "Greška", JOptionPane.OK_OPTION, new ErrorIcon());
-            JOptionPane.showMessageDialog(this, "Sistem ne može da sačuva intervenciju", "Greška", JOptionPane.OK_OPTION, new ErrorIcon());
+            JOptionPane.showMessageDialog(this, "Sistem ne može da registruje korisnika", "Greška", JOptionPane.OK_OPTION, new ErrorIcon());
             return;
         }
         JOptionPane.showMessageDialog(this, "Uspešno ste registrovani", "Uspešna registracija", JOptionPane.OK_OPTION, new SuccessIcon());
@@ -106,7 +108,7 @@ public class FormSignUp extends javax.swing.JFrame {
         pnlEmail = new MyInputTextField("E-pošta:", "E-pošta mora biti valida, e.g. me@mydomain.com", "^(([a-zA-Z\\d_\\.-]+)@([a-z\\d-]+)\\.([a-z]{2,8})(\\.[a-z]{2,8})?)$", true);
         pnlFirstname = new MyInputTextField("Ime:", "Ime mora imati 2 - 15 karaktera", "^(([A-Za-z]){2,15})$", true);
         pnlLastname = new MyInputTextField("Prezime:", "Prezime mora imati 2 - 15 karaktera", "^(([A-Za-z]){2,15})$", true);
-        pnlAdress = new MyInputTextField("Adresa:", "Adresa mora imati 4 - 20 karaktera", "^(([\\w, ]){4,20})$", false);
+        pnlAdress = new MyInputTextField("Adresa:", "Adresa mora imati 4 - 40 karaktera", "^(([\\w, ]){4,40})$", false);
         pnlPhone = new MyInputTextField("Telefon:", "Telefon mora biti unet u ispravnom formatu", "^((\\d){7,10})$", false);
 
         pnlSignUp.add(pnlUsername);
